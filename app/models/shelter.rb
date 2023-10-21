@@ -20,6 +20,10 @@ class Shelter < ApplicationRecord
     pets.count
   end
 
+  def self.order_reverse_alphabetical
+    Shelter.find_by_sql("SELECT * FROM shelters ORDER BY name DESC;")
+  end
+
   def adoptable_pets
     pets.where(adoptable: true)
   end
