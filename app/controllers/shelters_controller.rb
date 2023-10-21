@@ -2,6 +2,8 @@ class SheltersController < ApplicationController
   def index
     if "Admin".present?
       @shelters = Shelter.order_reverse_alphabetical
+    elsif "Shelters with Pending Applications".present?
+      @shelters = Shelter.shelter_with_pending_apps
     elsif params[:sort].present? && params[:sort] == "pet_count"
       @shelters = Shelter.order_by_number_of_pets
     elsif params[:search].present?

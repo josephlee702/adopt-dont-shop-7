@@ -24,6 +24,10 @@ class Shelter < ApplicationRecord
     Shelter.find_by_sql("SELECT * FROM shelters ORDER BY name DESC;")
   end
 
+  def pets_with_pending_apps
+    Pet.select("pets.*").joins([:applications]).where("applications.status = 'pending'").distinct
+  end
+
   def adoptable_pets
     pets.where(adoptable: true)
   end

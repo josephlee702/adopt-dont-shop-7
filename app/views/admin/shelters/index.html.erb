@@ -1,11 +1,4 @@
-<h1>All Shelters Admin Page</h1>
-
-<%= form_with url: "/admin/shelters", method: :get, local: true do |f| %>
-  <%= f.label :search %>
-  <%= f.text_field :search %>
-  <%= f.submit "Search" %>
-<% end %>
-
+<h1>All Shelters</h1>
 <% @shelters.each do |shelter| %>
   <div id="shelter-<%= shelter.id %>">
     <h3><%= shelter.name %></h3>
@@ -13,4 +6,14 @@
     <%= link_to "Update #{shelter.name}", "/shelters/#{shelter.id}/edit" %>
     <%= link_to "Delete #{shelter.name}", "/shelters/#{shelter.id}", method: :delete %>
   </div>
+<% end %>
+
+<h1>Shelters with Pending Applications</h1>
+<% @shelters.each do |shelter| %>
+    <div id="shelter-<%= shelter.id %>">
+      <h3><%= shelter.name %></h3>
+      <p>Created at: <%= shelter.created_at %></p>
+      <%= link_to "Update #{shelter.name}", "/shelters/#{shelter.id}/edit" %>
+      <%= link_to "Delete #{shelter.name}", "/shelters/#{shelter.id}", method: :delete %>
+    </div>
 <% end %>
